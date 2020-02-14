@@ -1,0 +1,51 @@
+<html>
+<head>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='css/styles.css' type='text/css'>
+    <title>Scrabble Words</title>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-md-center mt-4">
+        <div class="col-md-auto">
+            <div class="jumbotron">
+                <h1 class="display-4">Hello, world!</h1>
+                <p class="lead">This is a simple thanks to which you can search for words from your letters and calculate points based on the Scrabble game.</p>
+                <hr class="my-4">
+
+                <div class="row justify-content-md-center">
+                    <div class="col-md-4 text-center">
+                        <form action='/words' method='post'>
+                            <div class="form-group">
+                                <label for="word">Enter the letters for generate word</label>
+                                <input type="text" class="form-control" id="letter-input" name="letter-input">
+                                <small class="form-text text-muted">rtauamwqbzjak - For Example</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Get the Word</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-center mt-2">
+                    <h2>Word from letters</h2>
+                </div>
+
+                <div class="row justify-content-md-center mt-2">
+                    {% for letter in wordObject.getWordForLetters ?? '' %}
+                        <div class="col-sm-2 text-center">
+                            <strong>
+                                <form action='/points' method='post'>
+                                    <input type="hidden" id="word-input" name="word-input" value="{{letter}}">
+                                    <button class="btn btn-default mt-2" type="submit">{{letter}}</button>
+                                </form>
+                            </strong>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
